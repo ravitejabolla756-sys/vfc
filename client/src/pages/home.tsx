@@ -103,7 +103,7 @@ export default function Home() {
             <button onClick={() => scrollToSection("about")} className="text-sm font-medium hover:text-primary transition-colors">About</button>
             <button onClick={() => scrollToSection("menu")} className="text-sm font-medium hover:text-primary transition-colors">Menu</button>
             <button onClick={() => scrollToSection("location")} className="text-sm font-medium hover:text-primary transition-colors">Location</button>
-            <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-6" onClick={() => window.open("tel:+911234567890")}>
+            <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-6" onClick={() => window.open("tel:+918247697490")}>
               Call Now
             </Button>
           </div>
@@ -129,7 +129,7 @@ export default function Home() {
               <button onClick={() => scrollToSection("about")} className="text-left py-2 font-medium border-b border-border/50">About</button>
               <button onClick={() => scrollToSection("menu")} className="text-left py-2 font-medium border-b border-border/50">Menu</button>
               <button onClick={() => scrollToSection("location")} className="text-left py-2 font-medium border-b border-border/50">Location</button>
-              <Button className="w-full bg-primary" onClick={() => window.open("tel:+911234567890")}>Call Now</Button>
+              <Button className="w-full bg-primary" onClick={() => window.open("tel:+918247697490")}>Call Now</Button>
             </div>
           </motion.div>
         )}
@@ -156,7 +156,7 @@ export default function Home() {
               Experience the homely taste of Vanamali Tea and Tiffins. Fresh, hot, and delicious meals served with love.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full text-lg px-8 h-12" onClick={() => window.open("tel:+911234567890")}>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full text-lg px-8 h-12" onClick={() => window.open("tel:+918247697490")}>
                 <Phone className="w-5 h-5 mr-2" /> Order Now
               </Button>
               <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-orange-50 rounded-full text-lg px-8 h-12" onClick={() => window.open("https://www.google.com/maps/place/Vanamali+tea+and+tiffins/@15.4962642,80.0675981,17z", "_blank")}>
@@ -438,7 +438,7 @@ export default function Home() {
                   <Phone className="w-6 h-6 text-primary shrink-0 mt-1" />
                   <div>
                     <h3 className="font-bold text-lg">Call Us</h3>
-                    <p className="text-zinc-400">+91 123 456 7890</p>
+                    <p className="text-zinc-400">+91 82476 97490</p>
                   </div>
                 </div>
 
