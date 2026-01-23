@@ -26,42 +26,42 @@ const staggerContainer = {
 
 const menuItems = {
   tiffins: [
-    { name: "Idly", price: "₹40", type: "veg" },
-    { name: "Puri", price: "₹50", type: "veg" },
-    { name: "Onion Bonda", price: "₹45", type: "veg" },
-    { name: "Mysore Bonda", price: "₹45", type: "veg" },
-    { name: "Vada / Garelu", price: "₹50", type: "veg" },
-    { name: "Plain Dosa", price: "₹45", type: "veg" },
-    { name: "Egg Dosa", price: "₹60", type: "egg" },
-    { name: "Upma Dosa", price: "₹55", type: "veg" },
-    { name: "Onion Dosa", price: "₹55", type: "veg" },
-    { name: "Pasara Dosa", price: "₹50", type: "veg" },
-    { name: "Pasara Upma Dosa", price: "₹60", type: "veg" },
-    { name: "Pasara Onion Dosa", price: "₹60", type: "veg" },
-    { name: "Pasara Egg Dosa", price: "₹65", type: "egg" },
-    { name: "Uttapam", price: "₹50", type: "veg" },
+    { name: "Idly", type: "veg" },
+    { name: "Puri", type: "veg" },
+    { name: "Onion Bonda", type: "veg" },
+    { name: "Mysore Bonda", type: "veg" },
+    { name: "Vada / Garelu", type: "veg" },
+    { name: "Plain Dosa", type: "veg" },
+    { name: "Egg Dosa", type: "egg" },
+    { name: "Upma Dosa", type: "veg" },
+    { name: "Onion Dosa", type: "veg" },
+    { name: "Pasara Dosa", type: "veg" },
+    { name: "Pasara Upma Dosa", type: "veg" },
+    { name: "Pasara Onion Dosa", type: "veg" },
+    { name: "Pasara Egg Dosa", type: "egg" },
+    { name: "Uttapam", type: "veg" },
   ],
   meals: [
-    { name: "Kichidi", price: "₹60", type: "veg" },
-    { name: "Biryani", price: "₹180", type: "chicken" },
-    { name: "Chicken Curry", price: "₹150", type: "chicken" },
-    { name: "Chicken Fry", price: "₹160", type: "chicken" },
-    { name: "Boiled Eggs", price: "₹20", type: "egg" },
+    { name: "Kichidi", type: "veg" },
+    { name: "Biryani", type: "chicken" },
+    { name: "Chicken Curry", type: "chicken" },
+    { name: "Chicken Fry", type: "chicken" },
+    { name: "Boiled Eggs", type: "egg" },
   ],
   chinese: [
-    { name: "Plain Noodles", price: "₹80", type: "veg" },
-    { name: "Egg Noodles", price: "₹90", type: "egg" },
-    { name: "Chicken Noodles", price: "₹120", type: "chicken" },
-    { name: "Gobi Noodles", price: "₹100", type: "veg" },
-    { name: "Egg Gobi Noodles", price: "₹110", type: "egg" },
-    { name: "Plain Rice", price: "₹50", type: "veg" },
-    { name: "Egg Rice", price: "₹80", type: "egg" },
-    { name: "Chicken Rice", price: "₹110", type: "chicken" },
-    { name: "Gobi Rice", price: "₹90", type: "veg" },
-    { name: "Egg Gobi Rice", price: "₹100", type: "egg" },
-    { name: "Gobi Manchurian", price: "₹100", type: "veg" },
-    { name: "Egg Gobi Manchurian", price: "₹110", type: "egg" },
-    { name: "Chilli Chicken", price: "₹140", type: "chicken" },
+    { name: "Plain Noodles", type: "veg" },
+    { name: "Egg Noodles", type: "egg" },
+    { name: "Chicken Noodles", type: "chicken" },
+    { name: "Gobi Noodles", type: "veg" },
+    { name: "Egg Gobi Noodles", type: "egg" },
+    { name: "Plain Rice", type: "veg" },
+    { name: "Egg Rice", type: "egg" },
+    { name: "Chicken Rice", type: "chicken" },
+    { name: "Gobi Rice", type: "veg" },
+    { name: "Egg Gobi Rice", type: "egg" },
+    { name: "Gobi Manchurian", type: "veg" },
+    { name: "Egg Gobi Manchurian", type: "egg" },
+    { name: "Chilli Chicken", type: "chicken" },
   ]
 };
 
@@ -315,7 +315,6 @@ export default function Home() {
                         <TypeBadge type={item.type} />
                         <span className="font-medium text-lg group-hover:text-primary transition-colors">{item.name}</span>
                       </div>
-                      <span className="font-bold text-primary font-serif md:text-lg">{item.price}</span>
                     </motion.div>
                   ))}
                 </CardContent>
@@ -337,7 +336,6 @@ export default function Home() {
                         <TypeBadge type={item.type} />
                         <span className="font-medium text-lg group-hover:text-primary transition-colors">{item.name}</span>
                       </div>
-                      <span className="font-bold text-primary font-serif md:text-lg">{item.price}</span>
                     </motion.div>
                   ))}
                 </CardContent>
@@ -359,7 +357,6 @@ export default function Home() {
                         <TypeBadge type={item.type} />
                         <span className="font-medium text-lg group-hover:text-primary transition-colors">{item.name}</span>
                       </div>
-                      <span className="font-bold text-primary font-serif md:text-lg">{item.price}</span>
                     </motion.div>
                   ))}
                 </CardContent>
