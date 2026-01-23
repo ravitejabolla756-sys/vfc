@@ -1,0 +1,152 @@
+Build a single-page, mobile-friendly website for a South Indian tiffin and fast food shop named “Vanamali Tea and Tiffins” located in Ongole, Andhra Pradesh, India. The design should be clean, modern, and responsive, with warm colors (orange, yellow, light brown) to give a homely food vibe. Include HTML, CSS, and a little JavaScript in one project.
+
+Use this structure:
+
+Top Navbar & Hero Section
+
+Show the shop name: “Vanamali Tea and Tiffins”.
+
+Subtext: “Tasty tiffins, meals and fast food in Ongole”.
+
+Add a “Call Now” button (use a dummy number) and a “View Location” button that opens the Google Maps link in a new tab:
+https://www.google.com/maps/place/Vanamali+tea+and+tiffins/@15.4962642,80.0675981,17z
+
+Background image or gradient suitable for a food place.
+
+About Section
+
+Short description: Local casual place good for solo dining and groups, serves breakfast and lunch, with quick bites, coffee, and small plates. Mention that it offers dine-in, takeaway, delivery, and drive-through, is good for kids, has wheelchair-accessible parking and free street parking, and supports NFC mobile payments.
+​
+
+Timings Section
+Create a neat card or table showing:
+
+Morning Tiffins: 6:00 AM – 11:00 AM
+
+Meals & Curries: 8:00 AM – 5:00 PM
+
+Noodles & Fried Rice: 12:00 PM – 11:00 PM
+
+Menu Section (Categorized)
+Design this with tabs or clearly separated headings.
+
+Morning Tiffins (6 AM – 11 AM):
+
+Idly
+
+Puri
+
+Onion bonda
+
+Mysore bonda
+
+Vada / Garelu
+
+Plain dosa
+
+Egg dosa
+
+Upma dosa
+
+Onion dosa
+
+Pasara dosa
+
+Pasara upma dosa
+
+Pasara onion dosa
+
+Pasara egg dosa
+
+Uttapam
+
+Meals & Curries (8 AM – 5 PM):
+
+Kichidi
+
+Biryani
+
+Chicken curry
+
+Chicken fry
+
+Boiled eggs
+
+Noodles & Fried Rice (12 PM – 11 PM):
+
+Plain noodles
+
+Egg noodles
+
+Chicken noodles
+
+Gobi noodles
+
+Egg gobi noodles
+
+Plain rice
+
+Egg rice
+
+Chicken rice
+
+Gobi rice
+
+Egg gobi rice
+
+Gobi manchurian
+
+Egg gobi manchurian
+
+Chilli chicken
+
+Use simple icons or badges to highlight “Egg”, “Chicken”, and “Veg” items.
+
+Why Choose Us / Highlights
+Make a small section with bullet points based on the map info:
+
+Casual atmosphere, good for solo dining and groups.
+​
+
+Dine-in, takeaway, delivery, and drive-through options.
+​
+
+Good for kids and family-friendly.
+​
+
+Quick bites, coffee, and small plates available.
+​
+
+Wheelchair-accessible parking and free street parking.
+​
+
+NFC mobile payments accepted.
+​
+
+Location & Contact Section
+
+Embed a Google Maps iframe using the same location.
+
+Show address text like: “Vanamali Tea and Tiffins, Ongole, Andhra Pradesh, India”.
+
+Add dummy phone number, opening hours summary, and a “Get Directions” button linking to the same Google Maps URL.
+
+Footer
+
+Simple footer with: “© 2026 Vanamali Tea and Tiffins. All rights reserved.”
+
+Add small links: Home | Menu | Location | Contact.
+
+General requirements:
+
+Use semantic HTML5 sections.
+
+Make it responsive for mobile first.
+
+Use CSS for hover effects on buttons and menu cards.
+
+Add a simple scroll-to-section behavior when clicking navbar links.
+
+Do not use any backend, only frontend code (HTML, CSS, JS).
+
+Generate all the required code (HTML, CSS, and JS) so it can be directly run in Replit as a static website.
