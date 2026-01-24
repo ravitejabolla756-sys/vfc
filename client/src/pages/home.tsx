@@ -8,6 +8,9 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
 import heroImage from "@/assets/hero-food.png";
+import tiffinsImage from "@/assets/menu-tiffins.png";
+import mealsImage from "@/assets/menu-meals.png";
+import chineseImage from "@/assets/menu-chinese.png";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -35,10 +38,10 @@ const menuItems = {
     { name: "Egg Dosa", type: "egg" },
     { name: "Upma Dosa", type: "veg" },
     { name: "Onion Dosa", type: "veg" },
-    { name: "Pasara Dosa", type: "veg" },
-    { name: "Pasara Upma Dosa", type: "veg" },
-    { name: "Pasara Onion Dosa", type: "veg" },
-    { name: "Pasara Egg Dosa", type: "egg" },
+    { name: "Pesara Dosa", type: "veg" },
+    { name: "Pesara Upma Dosa", type: "veg" },
+    { name: "Pesara Onion Dosa", type: "veg" },
+    { name: "Pesara Egg Dosa", type: "egg" },
     { name: "Uttapam", type: "veg" },
   ],
   meals: [
@@ -301,6 +304,12 @@ export default function Home() {
             </TabsList>
             
             <TabsContent value="tiffins" className="mt-0">
+              <div className="mb-6 rounded-xl overflow-hidden shadow-lg h-48 md:h-64 relative">
+                <img src={tiffinsImage} alt="Morning Tiffins" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <h3 className="text-white font-serif text-2xl font-bold">Morning Favorites</h3>
+                </div>
+              </div>
               <Card className="border-none shadow-none bg-transparent">
                 <CardContent className="p-0 grid gap-4 sm:grid-cols-2">
                   {menuItems.tiffins.map((item, i) => (
@@ -322,6 +331,12 @@ export default function Home() {
             </TabsContent>
 
             <TabsContent value="meals" className="mt-0">
+              <div className="mb-6 rounded-xl overflow-hidden shadow-lg h-48 md:h-64 relative">
+                <img src={mealsImage} alt="Meals and Curries" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <h3 className="text-white font-serif text-2xl font-bold">Hearty Meals</h3>
+                </div>
+              </div>
               <Card className="border-none shadow-none bg-transparent">
                 <CardContent className="p-0 grid gap-4 sm:grid-cols-2">
                   {menuItems.meals.map((item, i) => (
@@ -343,6 +358,12 @@ export default function Home() {
             </TabsContent>
 
             <TabsContent value="chinese" className="mt-0">
+              <div className="mb-6 rounded-xl overflow-hidden shadow-lg h-48 md:h-64 relative">
+                <img src={chineseImage} alt="Chinese and Fried Rice" className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                  <h3 className="text-white font-serif text-2xl font-bold">Wok Specials</h3>
+                </div>
+              </div>
               <Card className="border-none shadow-none bg-transparent">
                 <CardContent className="p-0 grid gap-4 sm:grid-cols-2">
                   {menuItems.chinese.map((item, i) => (
