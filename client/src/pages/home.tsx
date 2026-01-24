@@ -92,11 +92,11 @@ export default function Home() {
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-serif font-bold text-xl">
-              V
+              VFC
             </div>
             <div>
-              <h1 className="font-serif font-bold text-lg md:text-xl leading-none text-primary">Vanamali</h1>
-              <span className="text-xs text-muted-foreground tracking-wider uppercase">Tea & Tiffins</span>
+              <h1 className="font-serif font-bold text-lg md:text-xl leading-none text-primary">VFC</h1>
+              <span className="text-xs text-muted-foreground tracking-wider uppercase">Vanamali Food Court</span>
             </div>
           </div>
 
@@ -151,9 +151,9 @@ export default function Home() {
             <Badge className="bg-orange-100 text-orange-800 hover:bg-orange-100 border-orange-200 px-4 py-1 text-sm rounded-full">
               Authentic Andhra Flavors
             </Badge>
-            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold leading-tight text-foreground">
-              Tasty Tiffins <br/>
-              <span className="text-primary">In Ongole</span>
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-9xl font-black leading-tight text-foreground tracking-tighter">
+              Vanamali <br/>
+              <span className="text-primary italic">Food Court</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto md:mx-0">
               Experience the homely taste of Vanamali Tea and Tiffins. Fresh, hot, and delicious meals served with love.
@@ -307,7 +307,7 @@ export default function Home() {
               <div className="mb-6 rounded-xl overflow-hidden shadow-lg h-48 md:h-64 relative">
                 <img src={tiffinsImage} alt="Morning Tiffins" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                  <h3 className="text-white font-serif text-2xl font-bold">Morning Favorites</h3>
+              <h3 className="text-white font-serif text-2xl font-bold">VFC - Morning Favorites</h3>
                 </div>
               </div>
               <Card className="border-none shadow-none bg-transparent">
@@ -438,12 +438,12 @@ export default function Home() {
         <div className="grid md:grid-cols-2 bg-zinc-900 text-white">
           <div className="p-8 md:p-16 flex flex-col justify-center space-y-8">
             <div>
-              <h2 className="font-serif text-3xl font-bold mb-6 text-primary">Visit Us Today</h2>
+              <h2 className="font-serif text-3xl font-bold mb-6 text-primary">Vanamali Food Court (VFC)</h2>
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
                   <MapPin className="w-6 h-6 text-primary shrink-0 mt-1" />
                   <div>
-                    <h3 className="font-bold text-lg">Vanamali Tea and Tiffins</h3>
+                    <h3 className="font-bold text-lg">VFC - Ongole</h3>
                     <p className="text-zinc-400">Ongole, Andhra Pradesh, India</p>
                     <a 
                       href="https://www.google.com/maps/place/Vanamali+tea+and+tiffins/@15.4962642,80.0675981,17z" 
@@ -476,7 +476,7 @@ export default function Home() {
             <Separator className="bg-zinc-800" />
             
             <div className="pt-4">
-              <p className="text-zinc-500 text-sm">© 2026 Vanamali Tea and Tiffins. All rights reserved.</p>
+              <p className="text-zinc-500 text-sm">© 2026 Vanamali Food Court (VFC). All rights reserved.</p>
               <div className="flex gap-4 mt-2 text-sm text-zinc-400">
                 <button onClick={() => scrollToSection("home")} className="hover:text-primary transition-colors">Home</button>
                 <button onClick={() => scrollToSection("menu")} className="hover:text-primary transition-colors">Menu</button>
