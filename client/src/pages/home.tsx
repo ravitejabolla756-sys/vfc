@@ -77,12 +77,19 @@ const TypeBadge = ({ type }: { type: string }) => {
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const [activeTab, setActiveTab] = useState("tiffins");
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
       setIsMobileMenuOpen(false);
     }
+  };
+
+  const handleTimingClick = (tabId: string) => {
+    setActiveTab(tabId);
+    scrollToSection("menu");
   };
 
   return (
@@ -156,7 +163,7 @@ export default function Home() {
               <span className="text-primary italic">Food Court</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto md:mx-0">
-              Experience the homely taste of Vanamali Tea and Tiffins. Fresh, hot, and delicious meals served with love.
+              Experience the homely taste of Vanamali Food Court. Fresh, hot, and delicious meals served with love.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-white rounded-full text-lg px-8 h-12" onClick={() => window.open("tel:+918247697490")}>
@@ -255,25 +262,34 @@ export default function Home() {
                   </div>
                   
                   <div className="space-y-6">
-                    <div className="flex justify-between items-start pb-4 border-b border-orange-200/50">
+                    <div 
+                      className="flex justify-between items-start pb-4 border-b border-orange-200/50 cursor-pointer hover:bg-white/50 transition-colors p-2 rounded-lg group"
+                      onClick={() => handleTimingClick("tiffins")}
+                    >
                       <div>
-                        <p className="font-bold text-lg text-orange-900">Morning Tiffins</p>
+                        <p className="font-bold text-lg text-orange-900 group-hover:text-primary transition-colors">Morning Tiffins</p>
                         <p className="text-orange-700 text-sm">Idly, Dosa, Vada & more</p>
                       </div>
                       <Badge variant="secondary" className="bg-white text-orange-800 font-bold text-md px-3 py-1">6 AM - 11 AM</Badge>
                     </div>
 
-                    <div className="flex justify-between items-start pb-4 border-b border-orange-200/50">
+                    <div 
+                      className="flex justify-between items-start pb-4 border-b border-orange-200/50 cursor-pointer hover:bg-white/50 transition-colors p-2 rounded-lg group"
+                      onClick={() => handleTimingClick("meals")}
+                    >
                       <div>
-                        <p className="font-bold text-lg text-orange-900">Meals & Curries</p>
+                        <p className="font-bold text-lg text-orange-900 group-hover:text-primary transition-colors">Meals & Curries</p>
                         <p className="text-orange-700 text-sm">Biryani, Rice, Chicken</p>
                       </div>
                       <Badge variant="secondary" className="bg-white text-orange-800 font-bold text-md px-3 py-1">8 AM - 5 PM</Badge>
                     </div>
 
-                    <div className="flex justify-between items-start">
+                    <div 
+                      className="flex justify-between items-start cursor-pointer hover:bg-white/50 transition-colors p-2 rounded-lg group"
+                      onClick={() => handleTimingClick("chinese")}
+                    >
                       <div>
-                        <p className="font-bold text-lg text-orange-900">Noodles & Rice</p>
+                        <p className="font-bold text-lg text-orange-900 group-hover:text-primary transition-colors">Noodles & Rice</p>
                         <p className="text-orange-700 text-sm">Fried Rice, Manchurian</p>
                       </div>
                       <Badge variant="secondary" className="bg-white text-orange-800 font-bold text-md px-3 py-1">12 PM - 11 PM</Badge>
@@ -296,7 +312,7 @@ export default function Home() {
             <p className="text-muted-foreground">From crispy dosas to spicy curries, we have something for every craving.</p>
           </div>
 
-          <Tabs defaultValue="tiffins" className="w-full max-w-4xl mx-auto">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full max-w-4xl mx-auto">
             <TabsList className="grid w-full grid-cols-3 mb-8 h-12 bg-orange-100/50 p-1">
               <TabsTrigger value="tiffins" className="text-md data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm">Morning Tiffins</TabsTrigger>
               <TabsTrigger value="meals" className="text-md data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm">Meals & Curries</TabsTrigger>
