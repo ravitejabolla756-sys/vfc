@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useSpring, useMotionValue } from "framer-motion";
 import { Phone, MapPin, Clock, Star, Utensils, Coffee, Leaf, Info, Menu as MenuIcon, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,6 +11,7 @@ import heroImage from "@/assets/hero-food.png";
 import tiffinsImage from "@/assets/menu-tiffins.png";
 import mealsImage from "@/assets/menu-meals.png";
 import chineseImage from "@/assets/menu-chinese.png";
+import chefHead from "@/assets/chef-head.png";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -74,10 +75,56 @@ const TypeBadge = ({ type }: { type: string }) => {
   return <Badge variant="outline" className="border-red-600 text-red-700 bg-red-50"><div className="w-2 h-2 rounded-full bg-red-600 mr-2" /> Chicken</Badge>;
 };
 
+const EyeFollowingChef = () => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const springConfig = { damping: 20, stiffness: 150 };
+  const rotateX = useSpring(mouseY, springConfig);
+  const rotateY = useSpring(mouseX, springConfig);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      const x = (clientX / innerWidth - 0.5) * 40;
+      const y = (clientY / innerHeight - 0.5) * -40;
+      mouseX.set(x);
+      mouseY.set(y);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  return (
+    <div className="fixed bottom-6 right-6 z-[100] hidden md:block group">
+      <div className="relative">
+        <motion.div
+          className="bg-white/90 backdrop-blur-sm p-3 rounded-2xl shadow-xl border border-primary/20 absolute -top-16 right-0 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+        >
+          <p className="text-sm font-bold text-primary">Hungry? Let's eat! 🍛</p>
+        </motion.div>
+        <motion.div
+          style={{ rotateX, rotateY, perspective: 1000 }}
+          className="w-16 h-16 cursor-pointer"
+        >
+          <img src={chefHead} alt="Chef" className="w-full h-full object-contain drop-shadow-lg" />
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   const [activeTab, setActiveTab] = useState("tiffins");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -92,8 +139,33 @@ export default function Home() {
     scrollToSection("menu");
   };
 
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 z-[1000] bg-primary flex flex-col items-center justify-center">
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
+          className="w-24 h-24 mb-4"
+        >
+          <img src={chefHead} alt="VFC Chef" className="w-full h-full object-contain" />
+        </motion.div>
+        <motion.h2 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-white font-serif text-3xl font-bold italic"
+        >
+          VFC
+        </motion.h2>
+        <p className="text-white/80 mt-2 font-medium">Cooking something delicious...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
+      <EyeFollowingChef />
+      
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/50 shadow-sm">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -225,7 +297,7 @@ export default function Home() {
               </div>
               <h2 className="font-serif text-3xl md:text-4xl font-bold">A Local Favorite for Every Meal</h2>
               <p className="text-muted-foreground text-lg leading-relaxed">
-                Vanamali Tea and Tiffins is your go-to casual dining spot in Ongole. Whether you're dining solo, with a group, or grabbing a quick bite, we serve authentic South Indian flavors that feel like home.
+                Vanamali Food Court is your go-to casual dining spot in Ongole. Whether you're dining solo, with a group, or grabbing a quick bite, we serve authentic South Indian flavors that feel like home.
               </p>
               
               <div className="grid grid-cols-2 gap-4 pt-4">
@@ -323,7 +395,7 @@ export default function Home() {
               <div className="mb-6 rounded-xl overflow-hidden shadow-lg h-48 md:h-64 relative">
                 <img src={tiffinsImage} alt="Morning Tiffins" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-              <h3 className="text-white font-serif text-2xl font-bold">VFC - Morning Favorites</h3>
+                  <h3 className="text-white font-serif text-2xl font-bold">VFC - Morning Favorites</h3>
                 </div>
               </div>
               <Card className="border-none shadow-none bg-transparent">
