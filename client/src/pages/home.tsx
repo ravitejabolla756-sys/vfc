@@ -18,12 +18,33 @@ const fadeIn = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
 };
 
+const fadeInFromTop = {
+  hidden: { opacity: 0, y: -60 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const fadeInFromRight = {
+  hidden: { opacity: 0, x: 80 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const fadeInFromLeft = {
+  hidden: { opacity: 0, x: -80 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
+const fadeInFromBottom = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+};
+
 const staggerContainer = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1
+      staggerChildren: 0.15,
+      delayChildren: 0.1
     }
   }
 };
@@ -75,42 +96,25 @@ const TypeBadge = ({ type }: { type: string }) => {
   return <Badge variant="outline" className="border-red-600 text-red-700 bg-red-50"><div className="w-2 h-2 rounded-full bg-red-600 mr-2" /> Chicken</Badge>;
 };
 
-const EyeFollowingChef = () => {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 20, stiffness: 150 };
-  const rotateX = useSpring(mouseY, springConfig);
-  const rotateY = useSpring(mouseX, springConfig);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      const x = (clientX / innerWidth - 0.5) * 40;
-      const y = (clientY / innerHeight - 0.5) * -40;
-      mouseX.set(x);
-      mouseY.set(y);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [mouseX, mouseY]);
-
+const ChefIcon = () => {
   return (
     <div className="fixed bottom-6 right-6 z-[100] hidden md:block group">
       <div className="relative">
-        <motion.div
+        {/* Hover tooltip */}
+        <div
           className="bg-white/90 backdrop-blur-sm p-3 rounded-2xl shadow-xl border border-primary/20 absolute -top-16 right-0 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
         >
-          <p className="text-sm font-bold text-primary">Hungry? Let's eat! 🍛</p>
-        </motion.div>
-        <motion.div
-          style={{ rotateX, rotateY, perspective: 1000 }}
-          className="w-16 h-16 cursor-pointer"
-        >
-          <img src={chefHead} alt="Chef" className="w-full h-full object-contain drop-shadow-lg" />
-        </motion.div>
+          <p className="text-sm font-bold text-primary">Hungry? Let's eat!</p>
+        </div>
+
+        {/* Chef icon - static, no animations */}
+        <div className="w-16 h-16 cursor-pointer relative">
+          <img
+            src={chefHead}
+            alt="Chef"
+            className="w-full h-full object-contain drop-shadow-lg"
+          />
+        </div>
       </div>
     </div>
   );
@@ -150,7 +154,7 @@ export default function Home() {
         >
           <img src={chefHead} alt="VFC Chef" className="w-full h-full object-contain" />
         </motion.div>
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="text-white font-serif text-3xl font-bold italic"
@@ -164,8 +168,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background font-sans text-foreground">
-      <EyeFollowingChef />
-      
+      <ChefIcon />
+
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border/50 shadow-sm">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
@@ -200,7 +204,7 @@ export default function Home() {
 
         {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -220,7 +224,7 @@ export default function Home() {
       {/* Hero Section */}
       <section id="home" className="pt-24 md:pt-32 pb-16 md:pb-24 px-4 overflow-hidden">
         <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -231,7 +235,7 @@ export default function Home() {
               Authentic Andhra Flavors
             </Badge>
             <h1 className="font-serif text-5xl md:text-7xl lg:text-9xl font-black leading-tight text-foreground tracking-tighter">
-              Vanamali <br/>
+              Vanamali <br />
               <span className="text-primary italic">Food Court</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto md:mx-0">
@@ -246,8 +250,8 @@ export default function Home() {
               </Button>
             </div>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={{ once: true }}
@@ -256,14 +260,14 @@ export default function Home() {
           >
             <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full transform scale-90 translate-y-4" />
             <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/50 transform rotate-2">
-              <img 
-                src={heroImage} 
-                alt="South Indian Tiffins Spread" 
+              <img
+                src={heroImage}
+                alt="South Indian Tiffins Spread"
                 className="w-full h-auto object-cover aspect-[4/3]"
               />
             </div>
             {/* Floating Cards */}
-            <motion.div 
+            <motion.div
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
@@ -285,12 +289,12 @@ export default function Home() {
       <section id="about" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12">
-            <motion.div 
-               initial="hidden"
-               whileInView="visible"
-               viewport={{ once: true }}
-               variants={staggerContainer}
-               className="space-y-6"
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInFromLeft}
+              className="space-y-6"
             >
               <div className="inline-flex items-center gap-2 text-primary font-bold tracking-wider uppercase text-sm">
                 <Info className="w-4 h-4" /> About Us
@@ -299,7 +303,7 @@ export default function Home() {
               <p className="text-muted-foreground text-lg leading-relaxed">
                 Vanamali Food Court is your go-to casual dining spot in Ongole. Whether you're dining solo, with a group, or grabbing a quick bite, we serve authentic South Indian flavors that feel like home.
               </p>
-              
+
               <div className="grid grid-cols-2 gap-4 pt-4">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-primary" />
@@ -323,8 +327,8 @@ export default function Home() {
             <motion.div
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeIn}
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInFromRight}
             >
               <Card className="bg-orange-50 border-orange-100 h-full">
                 <CardContent className="p-8">
@@ -332,9 +336,9 @@ export default function Home() {
                     <Clock className="w-6 h-6 text-primary" />
                     <h3 className="font-serif text-2xl font-bold">Opening Hours</h3>
                   </div>
-                  
+
                   <div className="space-y-6">
-                    <div 
+                    <div
                       className="flex justify-between items-start pb-4 border-b border-orange-200/50 cursor-pointer hover:bg-white/50 transition-colors p-2 rounded-lg group"
                       onClick={() => handleTimingClick("tiffins")}
                     >
@@ -345,7 +349,7 @@ export default function Home() {
                       <Badge variant="secondary" className="bg-white text-orange-800 font-bold text-md px-3 py-1">6 AM - 11 AM</Badge>
                     </div>
 
-                    <div 
+                    <div
                       className="flex justify-between items-start pb-4 border-b border-orange-200/50 cursor-pointer hover:bg-white/50 transition-colors p-2 rounded-lg group"
                       onClick={() => handleTimingClick("meals")}
                     >
@@ -356,7 +360,7 @@ export default function Home() {
                       <Badge variant="secondary" className="bg-white text-orange-800 font-bold text-md px-3 py-1">8 AM - 5 PM</Badge>
                     </div>
 
-                    <div 
+                    <div
                       className="flex justify-between items-start cursor-pointer hover:bg-white/50 transition-colors p-2 rounded-lg group"
                       onClick={() => handleTimingClick("chinese")}
                     >
@@ -390,7 +394,7 @@ export default function Home() {
               <TabsTrigger value="meals" className="text-md data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm">Meals & Curries</TabsTrigger>
               <TabsTrigger value="chinese" className="text-md data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm">Chinese & Rice</TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="tiffins" className="mt-0">
               <div className="mb-6 rounded-xl overflow-hidden shadow-lg h-48 md:h-64 relative">
                 <img src={tiffinsImage} alt="Morning Tiffins" className="w-full h-full object-cover" />
@@ -401,7 +405,7 @@ export default function Home() {
               <Card className="border-none shadow-none bg-transparent">
                 <CardContent className="p-0 grid gap-4 sm:grid-cols-2">
                   {menuItems.tiffins.map((item, i) => (
-                    <motion.div 
+                    <motion.div
                       key={i}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -428,7 +432,7 @@ export default function Home() {
               <Card className="border-none shadow-none bg-transparent">
                 <CardContent className="p-0 grid gap-4 sm:grid-cols-2">
                   {menuItems.meals.map((item, i) => (
-                    <motion.div 
+                    <motion.div
                       key={i}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -455,7 +459,7 @@ export default function Home() {
               <Card className="border-none shadow-none bg-transparent">
                 <CardContent className="p-0 grid gap-4 sm:grid-cols-2">
                   {menuItems.chinese.map((item, i) => (
-                    <motion.div 
+                    <motion.div
                       key={i}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -479,45 +483,57 @@ export default function Home() {
       <section className="py-16 bg-primary text-primary-foreground relative overflow-hidden">
         {/* Decorative background pattern */}
         <div className="absolute inset-0 opacity-10 pattern-dots" />
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-4">Why Dine With Us?</h2>
-          </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div className="flex flex-col items-center gap-3">
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeInFromTop}
+            className="text-center mb-12"
+          >
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-4">Why Dine With Us?</h2>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
+          >
+            <motion.div variants={fadeInFromTop} className="flex flex-col items-center gap-3">
               <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
                 <Utensils className="w-8 h-8 text-white" />
               </div>
               <h3 className="font-bold text-lg">Family Friendly</h3>
               <p className="text-white/80 text-sm">Great atmosphere for groups and kids</p>
-            </div>
-            
-            <div className="flex flex-col items-center gap-3">
+            </motion.div>
+
+            <motion.div variants={fadeInFromRight} className="flex flex-col items-center gap-3">
               <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
                 <Coffee className="w-8 h-8 text-white" />
               </div>
               <h3 className="font-bold text-lg">Quick Bites</h3>
               <p className="text-white/80 text-sm">Coffee, snacks & small plates</p>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col items-center gap-3">
+            <motion.div variants={fadeInFromLeft} className="flex flex-col items-center gap-3">
               <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
                 <Star className="w-8 h-8 text-white" />
               </div>
               <h3 className="font-bold text-lg">Top Rated</h3>
               <p className="text-white/80 text-sm">Loved by locals in Ongole</p>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col items-center gap-3">
+            <motion.div variants={fadeInFromBottom} className="flex flex-col items-center gap-3">
               <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
                 <Phone className="w-8 h-8 text-white" />
               </div>
               <h3 className="font-bold text-lg">Easy Ordering</h3>
               <p className="text-white/80 text-sm">Dine-in, Takeaway & Delivery</p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -533,9 +549,9 @@ export default function Home() {
                   <div>
                     <h3 className="font-bold text-lg">VFC - Ongole</h3>
                     <p className="text-zinc-400">Ongole, Andhra Pradesh, India</p>
-                    <a 
-                      href="https://www.google.com/maps/place/Vanamali+tea+and+tiffins/@15.4962642,80.0675981,17z" 
-                      target="_blank" 
+                    <a
+                      href="https://www.google.com/maps/place/Vanamali+tea+and+tiffins/@15.4962642,80.0675981,17z"
+                      target="_blank"
                       className="text-primary hover:underline text-sm mt-1 inline-block"
                     >
                       Get Directions
@@ -562,7 +578,7 @@ export default function Home() {
             </div>
 
             <Separator className="bg-zinc-800" />
-            
+
             <div className="pt-4">
               <p className="text-zinc-500 text-sm">© 2026 Vanamali Food Court (VFC). All rights reserved.</p>
               <div className="flex gap-4 mt-2 text-sm text-zinc-400">
@@ -572,17 +588,17 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
+
           <div className="h-[400px] md:h-auto w-full bg-zinc-800 relative">
-             <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.299444458319!2d80.06540941485526!3d15.496264189235954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4b01e2c1c1c1c1%3A0x1c1c1c1c1c1c1c1c!2sVanamali+tea+and+tiffins!5e0!3m2!1sen!2sin!4v1625555555555!5m2!1sen!2sin" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen={true} 
-                loading="lazy" 
-                className="grayscale hover:grayscale-0 transition-all duration-500"
-              />
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.299444458319!2d80.06540941485526!3d15.496264189235954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4b01e2c1c1c1c1%3A0x1c1c1c1c1c1c1c1c!2sVanamali+tea+and+tiffins!5e0!3m2!1sen!2sin!4v1625555555555!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              className="grayscale hover:grayscale-0 transition-all duration-500"
+            />
           </div>
         </div>
       </section>
